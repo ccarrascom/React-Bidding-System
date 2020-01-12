@@ -57,11 +57,8 @@
 
   .bid-detail-div {
     background-color: white;
-    padding-left: 50px;
-    padding-top: 30px;
-    margin-right: 50px;
-    margin-left: 50px;
     margin-bottom: 30px;
+    padding: 1rem;
   }
 
   .livestock-info {

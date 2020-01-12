@@ -13,8 +13,8 @@ class DetailList extends Component {
   } 
 
    //Fetch bidHistory after first mount
-  componentDidMount() { 
-    this.getBidHistory();
+   componentDidMount() { 
+   this.getBidHistory();
     var self = this; 
     //handle to listen updateBid from server socket
     socket.on('updateBid', function(bidObj){
@@ -62,14 +62,13 @@ class DetailList extends Component {
           key = {details.id} 
           id ={details.id}
           basePrice={details.basePrice}
+          bidIncrement={details.bidIncrement}
           image={details.image}
           bidHistory = {bidSort}  
           saveBid = {self.saveBid.bind(self)}
           userName = {self.props.userName}
-          timeFromServer = {self.state.timeRemain}      
-
-        >
-         
+          timeFromServer = {self.state.timeRemain}
+        >   
         </Details>
       );
     });
@@ -93,11 +92,22 @@ class Details extends Component {
     this.state = {bidPrice:'',inputValue:'', showBidInput: true};
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
     this.setState({inputValue: event.target.value});
+  }
+  handleClick(event) {
+    var bidIncrement = parseInt(this.props.bidIncrement);
+    var last_bidder_key = Object.keys(this.props.bidHistory)[0];
+    var last_bid = parseInt(this.props.bidHistory[last_bidder_key]);
+    var multiplier = parseInt(event.target.value);
+    var value = last_bid + (bidIncrement * multiplier);
+    console.log(value)
+    this.setState({inputValue: value});
+  
   }
 
   handleSubmit(event) {    
@@ -122,11 +132,11 @@ class Details extends Component {
         <div className="bid-detail-div">
           <div className="row">
             <div className="col-md-12">
-              <Image src={imgUrl} width="275" height="183" rounded />
+              <Image src={imgUrl} rounded responsive />
             </div>
           </div>
           <div className="row">
-            <div className="col-md-12 ">
+            <div className="col-md-12">
               <div>
                 <div className="livestock-info">
                   <h5>{this.props.breed} - {this.props.id}</h5>
@@ -144,8 +154,14 @@ class Details extends Component {
                     <form className="form-inline bid-form" onSubmit={this.handleSubmit}> 
                       {this.props.timeFromServer >0 &&
                         <div>
-                          <div className="form-group mx-sm-3" >                  
-                            <input id="inputBid" className="form-control" type="number" placeholder="Your Price" min={this.props.basePrice} value={this.state.inputValue} onChange={this.handleChange} />                  
+                          <label>Incremento: {this.props.bidIncrement}</label>              
+                          <div className="form-group mx-sm-3" >
+                            <input id="inputBid" className="form-control" type="number" placeholder="Your Price" min={this.props.basePrice} value={this.state.inputValue} onChange={this.handleChange} />           
+                            <div className="btn-group" role="group" aria-label="Basic example">
+                              <button type="button" value="1" className="btn btn-primary" onClick={this.handleClick}>x1</button>
+                              <button type="button" value="2" className="btn btn-primary" onClick={this.handleClick}>x2</button>
+                              <button type="button" value="3" className="btn btn-primary" onClick={this.handleClick}>x3</button>
+                            </div>
                           </div>
                         <input type="submit" className="btn btn-primary bid-submit-btn" value="Bid" />
                       </div>
