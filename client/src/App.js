@@ -21,13 +21,11 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App container-fluid">
-        <div className = "row nav-bar">
-          <div className = "col-md-12 app-title"><h1>SUBASTAS ONLINE</h1></div>
+      <div className="App container">
+        <div className = "nav-bar">
+          <h1>SUBASTAS ONLINE</h1>
         </div>
-        <div className = "row">          
-            <Welcome details = {this.state.details} />          
-        </div>
+        <Welcome details = {this.state.details} />          
       </div>     
     );
   }

@@ -9,9 +9,9 @@ class BidHistory extends Component {
 	 	});
 	 	return (
 	 			
-      			<div className="col-md-12">
+      			<div>
       			   <ul className="bid-history-list list-group">
-      			   <li className="list-group-item" ><span>Bidder</span> <span style={{float:'right'}}>Bid Price</span></li>
+      			   <li className="list-group-item" ><span>Usuario</span> <span style={{float:'right'}}>Oferta</span></li>
                    	{historyList}
                    </ul>
       			</div>

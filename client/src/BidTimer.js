@@ -53,7 +53,7 @@ class BidTimer extends Component {
 
 	 render() {	 
 	 	return (
-	 	          <div className="clockdiv">
+	 	          <div className="clockdiv mb-3">
 					  <div>
 					    <span className="minutes">{this.state.timeLeft.m}</span>
 					    <div className="smalltext">Min</div>
