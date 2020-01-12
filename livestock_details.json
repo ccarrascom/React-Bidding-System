@@ -1,9 +1,9 @@
 [
     {
         "id": 111,
-        "breed":"Vaca sabrosa",
-        "basePrice": 200,
-        "bidIncrement": 20,
-        "image":"image1.jpg"        
+        "breed":"Volkswagen Gol",
+        "basePrice": 200000,
+        "bidIncrement": 300,
+        "image":"gol.jpg"        
     }    
 ]

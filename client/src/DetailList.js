@@ -150,7 +150,7 @@ class Details extends Component {
 		return (
 			<div className="col-md-6">
 				<div className="bid-detail-div card">
-					<img src={imgUrl} className="img-fluid" />
+					<img src={imgUrl} className="img-fluid w-100" />
 					<div className="card-body">
 						<h5 className="card-title">{this.props.breed} - {this.props.id}</h5>
 						<p><strong>Precio base:</strong> ${this.props.basePrice}</p>
