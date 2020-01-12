@@ -1,7 +1,7 @@
 [
     {
         "id": 111,
-        "breed":"Texas Longhorn",
+        "breed":"Vaca sabrosa",
         "basePrice": 200,
         "bidIncrement": 20,
         "image":"image1.jpg"        

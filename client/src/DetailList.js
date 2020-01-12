@@ -96,15 +96,22 @@ class Details extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount(){
+    // if(this.getLastBidValue() == this.props.basePrice){
+      this.setState({ inputValue: this.getLastBidValue() + this.props.bidIncrement });
+    // }
+    console.log('mounted');
+  }
+
   handleChange(event) {
     this.setState({ inputValue: event.target.value });
   }
 
   handleClick(event) {
     var bidIncrement = parseInt(this.props.bidIncrement);
-    var multiplier = parseInt(event.target.value);
+    var factor = parseInt(event.target.value);
     var last_bid = this.getLastBidValue();
-    var value = last_bid + (bidIncrement * multiplier);
+    var value = last_bid + (bidIncrement * factor);
     this.setState({ inputValue: value });
   }
 
@@ -128,7 +135,7 @@ class Details extends Component {
   }
 
   getLastBidValue() {
-    if (this.props.bidHistory.length !== 0) {
+    if ( Object.keys(this.props.bidHistory).length > 0) {
       var key = Object.keys(this.props.bidHistory)[0];
       return parseInt(this.props.bidHistory[key]);
     } else {
@@ -153,12 +160,12 @@ class Details extends Component {
               <div>
                 <div className="livestock-info">
                   <h5>{this.props.breed} - {this.props.id}</h5>
-                  <h5>Base Price - ${this.props.basePrice}</h5>
+                  <h5>Precio base - ${this.props.basePrice}</h5>
                   {this.props.timeFromServer > 0 &&
                     <BidTimer timeFromServer={this.props.timeFromServer} />
                   }
                   {this.props.timeFromServer < 0 &&
-                    <h5>SOLD</h5>
+                    <h5>VENDIDO</h5>
                   }
                 </div>
                 {this.props.userName !== '' &&
@@ -169,10 +176,10 @@ class Details extends Component {
                           <div>
                             <div className="form-row align-items-center">
                               <div className="col-auto my-1">
-                                <input id="inputBid" className="form-control" type="number" required readonly placeholder="Your Price" min={this.props.basePrice} value={this.state.inputValue} onChange={this.handleChange} />
+                                <input id="inputBid" className="form-control" type="number" required readOnly placeholder="Your Price" min={this.props.basePrice} value={this.state.inputValue} onChange={this.handleChange} />
                               </div>
                               <div className="col-auto my-1">
-                                <input type="submit" className="btn btn-primary bid-submit-btn" value="Bid" />
+                                <input type="submit" className="btn btn-primary bid-submit-btn" value="Ofertar" />
                               </div>
                             </div>
                             <label>Incremento: {this.props.bidIncrement}</label>
@@ -185,7 +192,7 @@ class Details extends Component {
                         }
                       </form>
                     ) : (
-                        <input type="button" className="btn btn-primary rebid-input" value="ReBid" onClick={this.reBid.bind(this)} />
+                        <input type="button" className="btn btn-primary rebid-input" value="Re Ofertar" onClick={this.reBid.bind(this)} />
                       )
                     }
 
@@ -197,7 +204,7 @@ class Details extends Component {
           {Object.keys(this.props.bidHistory).length > 0 &&
             <div>
               <div className="row bid-history-div">
-                <h4 className="bid-history-header ">Bid History</h4>
+                <h4 className="bid-history-header ">Historial</h4>
                 <BidHistory bidHistory={this.props.bidHistory} ></BidHistory>
               </div>
             </div>

@@ -23,7 +23,7 @@ class App extends Component {
     return (
       <div className="App container-fluid">
         <div className = "row nav-bar">
-          <div className = "col-md-12 app-title"><h1>BUYMYCOW</h1></div>
+          <div className = "col-md-12 app-title"><h1>SUBASTAS ONLINE</h1></div>
         </div>
         <div className = "row">          
             <Welcome details = {this.state.details} />          

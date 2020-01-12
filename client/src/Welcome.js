@@ -26,19 +26,19 @@ class Welcome extends Component {
           <div className="row user-banner"> 
             {userName ==='' ? (
               <div className="col-md-12  label-center"> 
-                 <h3>Please Enter Your Name To Bid</h3>       
+                 <h3>Ingrese su nombre para ofertar</h3>       
                   <form className="form-inline" onSubmit={this.handleSubmit}>
                     <div className="form-group mx-sm-3" >                                       
-                      <input id="inputUsername" placeholder="User Name" className="form-control" type="text" value={this.state.value} onChange={this.handleChange} />
+                      <input id="inputUsername" placeholder="Usuario" className="form-control" type="text" value={this.state.value} onChange={this.handleChange} />
                      
                     </div>
-                    <input type="submit" className="btn btn-primary" value="Submit" />
+                    <input type="submit" className="btn btn-primary" value="Enviar" />
                   </form>
                   
               </div>
               ):(
                 <div className="col-md-12  label-center">
-                  <h2>HI! {userName} Welcome to BUYMYCOW</h2>                  
+                  <h2>Bienvenido {userName}, comienza a ofertar! </h2>
                 </div>
               )}
            
